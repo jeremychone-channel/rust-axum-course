@@ -1,0 +1,41 @@
+# By Default, Ignore any .*, except .gitignore
+.*
+!.gitignore
+
+# Allow vscode 
+# !.vscode
+
+# By default
+_*
+
+# -- Rust
+target/
+# '_' in src dir, ok.
+!src/**/_*
+
+
+# -- Safety net
+dist/
+__pycache__/
+node_modules/
+npm-debug.log
+report.*.json
+
+*.parquet
+*.map
+*.zip
+*.gz
+*.tar
+*.tgz
+
+# videos
+*.mov
+*.mp4
+
+# images
+*.icns
+*.ico
+*.jpeg
+*.jpg
+*.gif
+*.png
