@@ -4,8 +4,19 @@ YouTube Full Course: https://youtube.com/watch?v=XZtlD_m59sM&list=PL7r-PXl6ZPcCI
 
 MIT OR Apache, all free to use. 
 
-> Important: Axum bug in v0.6.15 (set the version to `=0.6.12`). This bug only affects the ServeDir, but the impact is quite significant. The code has been updated to lock the version to v0.6.12 until the issue is resolved. https://github.com/tokio-rs/axum/issues/1931
 
+
+## Important 1
+
+On **Windows** for the "link" file issue when running the cargo test and run in parallel. The solution is to move `tests/quick_dev.rs` to the `examples` folder, rename the function to `#[tokio::main]`, and it should allow you to do the following:
+- In Terminal 1: `cargo watch -q -c -w src/ -x run`
+- In Terminal 2: `cargo watch -q -c -w examples/ -x 'run --example quick_dev'`
+
+(we will follow this scheme in the next videos)
+
+## Important 2
+
+**Axum** static routes bug in `v0.6.15` has been fixed in `v0.6.16` make sure you do a `cargo update` if you had a previous git pull of this repo. 
 
 # Dev (REPL)
 

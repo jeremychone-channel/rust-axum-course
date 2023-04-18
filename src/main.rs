@@ -6,7 +6,7 @@ use crate::ctx::Ctx;
 use crate::log::log_request;
 use crate::model::ModelController;
 use axum::extract::{Path, Query};
-use axum::http::{Method, Uri};
+use axum::http::{Method, Request, Uri};
 use axum::response::{Html, IntoResponse, Response};
 use axum::routing::{get, get_service};
 use axum::{middleware, Json, Router};
