@@ -32,6 +32,9 @@ The `tests/quick_dev.rs` file has been moved to `examples/quick_dev.rs` (with th
 
 ### Note 2
 
-Make sure to use `axum` version `0.6.16` or above, as version `0.6.15` had a bug in the static routing.
+- Here is a [Per Chapter Fork](https://github.com/FloWi/rust-axum-course) by [@FloWi](https://github.com/FloWi). Big thanks!
+- Use the `--poll` flag for cargo watch (latest 8.4.0) on my Fedora Linux environment - both server and test.
+Things were not updating without it. [see #1](https://github.com/jeremychone-channel/rust-axum-course/issues/1)
+- Make sure to use `axum` version `0.6.16` or above, as version `0.6.15` had a bug in the static routing.
 
 This repository can be found on [GitHub](https://github.com/jeremychone-channel/rust-axum-course).
