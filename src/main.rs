@@ -1,4 +1,4 @@
-#![allow(unused)] // For beginning only.
+// #![allow(unused)] // For beginning only.
 
 pub use self::error::{Error, Result};
 
@@ -6,7 +6,7 @@ use crate::ctx::Ctx;
 use crate::log::log_request;
 use crate::model::ModelController;
 use axum::extract::{Path, Query};
-use axum::http::{Method, Request, Uri};
+use axum::http::{Method, Uri};
 use axum::response::{Html, IntoResponse, Response};
 use axum::routing::{get, get_service};
 use axum::{middleware, Json, Router};
@@ -88,7 +88,9 @@ async fn main_response_mapper(
 
 	// Build and log the server log line.
 	let client_error = client_status_error.unzip().1;
-	log_request(uuid, req_method, uri, ctx, service_error, client_error).await;
+	// TODO: Need to hander if log_request fail (but should not fail request)
+	let _ =
+		log_request(uuid, req_method, uri, ctx, service_error, client_error).await;
 
 	println!();
 	error_response.unwrap_or(res)
