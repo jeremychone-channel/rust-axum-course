@@ -1,5 +1,7 @@
 # Rust Axum Full Course Source Code
 
+CODE UPDATED TO AXUM 0.7 [tag: axum-06-to-07](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-06-to-07)
+
 This repository contains the source code for the Rust Axum Full Course, which is available on [YouTube](https://youtube.com/watch?v=XZtlD_m59sM&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q). The code is available under either the MIT or Apache license and is free to use.
 
 Full Rust Web App Production Blueprint Course and Repository at https://rust10x.com/web-app (YouTube video: [Episode 01 - Rust Web App - Course to Production Coding](https://youtube.com/watch?v=3cA_mk4vdWY&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q))

@@ -11,6 +11,7 @@ use axum::{middleware, Json, Router};
 use serde::Deserialize;
 use serde_json::json;
 use std::net::SocketAddr;
+use tokio::net::TcpListener;
 use tower_cookies::CookieManagerLayer;
 use tower_http::services::ServeDir;
 use uuid::Uuid;
@@ -42,10 +43,9 @@ async fn main() -> Result<()> {
 		.fallback_service(routes_static());
 
 	// region:    --- Start Server
-	let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
-	println!("->> LISTENING on {addr}\n");
-	axum::Server::bind(&addr)
-		.serve(routes_all.into_make_service())
+	let listener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
+	println!("->> LISTENING on {:?}\n", listener.local_addr());
+	axum::serve(listener, routes_all.into_make_service())
 		.await
 		.unwrap();
 	// endregion: --- Start Server
