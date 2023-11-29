@@ -2,24 +2,37 @@
 .*
 !.gitignore
 
+# Allows cargo config (for cargo envs)
+!.cargo/
+
+# Allows .env (for early developmment) 
+!.env
+
 # Allow vscode 
 # !.vscode
 
 # By default
 _*
 
-# -- Rust
+# --- Rust
 target/
+Cargo.lock
 # '_' in src dir, ok.
 !src/**/_*
 
 
-# -- Safety net
+# nodejs accept test
+!.mocharc.yaml
+
+# --- Safety net
 dist/
+out/
 __pycache__/
 node_modules/
 npm-debug.log
 report.*.json
+
+*.lock
 
 *.parquet
 *.map
@@ -37,5 +50,4 @@ report.*.json
 *.ico
 *.jpeg
 *.jpg
-*.gif
 *.png
