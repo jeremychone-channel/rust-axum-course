@@ -8,21 +8,29 @@ description = "Rust Axum Full Course code."
 homepage = "https://youtu.be/XZtlD_m59sM"
 repository = "https://github.com/rust-httpc-test"
 
+[workspace.lints.rust]
+unsafe_code = "forbid"
+unused = "allow" # For experimental dev.
+
+[lints]
+workspace = true
+
 [dependencies]
+# -- Async
 tokio = { version = "1", features = ["full"] }
-# Serde / json
+async-trait = "0.1"
+# -- Serde
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 serde_with = "3"
-# Axum
+# -- Web
 axum = "0.6"
 # Note: As of 2023-11-21 axum does not seem to support tower-http 0.5
 #       See axum issue: https://github.com/tokio-rs/axum/issues/2333
 tower-http = { version = "0.4", features = ["fs"] }
 tower-cookies = "0.9"
-# Others
+# -- Others
 lazy-regex = "3"
-async-trait = "0.1"
 strum_macros = "0.25"
 uuid = {version = "1", features = ["v4","fast-rng",]}
 

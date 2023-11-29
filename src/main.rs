@@ -1,5 +1,3 @@
-// #![allow(unused)] // For beginning only.
-
 pub use self::error::{Error, Result};
 
 use crate::ctx::Ctx;
