@@ -21,7 +21,7 @@ pub async fn log_request(
 		.unwrap()
 		.as_millis();
 
-	let error_type = service_error.map(|se| se.as_ref().to_string());
+	let error_type = service_error.map(|se| se.to_string());
 	let error_data = serde_json::to_value(service_error)
 		.ok()
 		.and_then(|mut v| v.get_mut("data").map(|v| v.take()));
