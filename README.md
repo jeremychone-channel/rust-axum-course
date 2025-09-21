@@ -17,7 +17,7 @@ Here is a [Per Chapter Fork](https://github.com/FloWi/rust-axum-course) by [@Flo
 ## Updates
 
 - 2025-09-21 -  **Axum 0.7 to 0.8** [GitHub tag: axum-07-to-08](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-07-to-08)
-- 2023-09-30 -  **Axum 0.6 to 0.7** [GitHub tag: axum-06-to-07](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-06-to-07)
+- 2023-11-30 -  **Axum 0.6 to 0.7** [GitHub tag: axum-06-to-07](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-06-to-07)
 
 ## Dev (REPL)
 
