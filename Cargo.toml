@@ -28,6 +28,7 @@ tower-cookies = "0.11"
 lazy-regex = "3"
 strum_macros = "0.27"
 uuid = {version = "1", features = ["v4","fast-rng",]}
+derive_more = {version = "2", features = ["from", "display"] }
 
 
 [dev-dependencies]

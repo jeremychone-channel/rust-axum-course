@@ -1,12 +1,17 @@
 use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
+use derive_more::From;
 use serde::Serialize;
 
 pub type Result<T> = core::result::Result<T, Error>;
 
-#[derive(Clone, Debug, Serialize, strum_macros::AsRefStr)]
+#[derive(Clone, From, Debug, Serialize, strum_macros::AsRefStr)]
 #[serde(tag = "type", content = "data")]
 pub enum Error {
+	#[from(String, &str, &String)]
+	Custom(String),
+
+	// -- Login
 	LoginFail,
 
 	// -- Auth errors.
@@ -15,7 +20,9 @@ pub enum Error {
 	AuthFailCtxNotInRequestExt,
 
 	// -- Model errors.
-	TicketDeleteFailIdNotFound { id: u64 },
+	TicketDeleteFailIdNotFound {
+		id: u64,
+	},
 }
 
 // region:    --- Error Boilerplate
@@ -30,6 +37,8 @@ impl core::fmt::Display for Error {
 
 impl std::error::Error for Error {}
 // endregion: --- Error Boilerplate
+
+// region:    --- Axum/Web Error Handling
 
 impl IntoResponse for Error {
 	fn into_response(self) -> Response {
@@ -80,3 +89,5 @@ pub enum ClientError {
 	INVALID_PARAMS,
 	SERVICE_ERROR,
 }
+
+// endregion: --- Axum/Web Error Handling

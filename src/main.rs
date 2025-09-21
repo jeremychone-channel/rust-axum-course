@@ -11,7 +11,6 @@ use axum::routing::{MethodRouter, get, get_service};
 use axum::{Json, Router, middleware};
 use serde::Deserialize;
 use serde_json::json;
-use tokio::net::TcpListener;
 use tower_cookies::CookieManagerLayer;
 use tower_http::services::ServeDir;
 use uuid::Uuid;
@@ -43,11 +42,14 @@ async fn main() -> Result<()> {
 		.fallback_service(route_static());
 
 	// region:    --- Start Server
-	let listener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
-	println!("->> LISTENING on {:?}\n", listener.local_addr());
-	axum::serve(listener, routes_all.into_make_service())
+	// run our app with hyper, listening localhost on port 8080
+	let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
 		.await
-		.unwrap();
+		.map_err(|err| format!("Cannot start TcpListener. \nCause: {err}"))?;
+	println!("->> LISTENING on {:?}\n", listener.local_addr());
+	axum::serve(listener, routes_all)
+		.await
+		.map_err(|err| format!("Cannot start axum::serve. \nCause:{err}"))?;
 	// endregion: --- Start Server
 
 	Ok(())
