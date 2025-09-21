@@ -2,11 +2,10 @@ use crate::ctx::Ctx;
 use crate::model::ModelController;
 use crate::web::AUTH_TOKEN;
 use crate::{Error, Result};
-use async_trait::async_trait;
 use axum::body::Body;
 use axum::extract::{FromRequestParts, State};
-use axum::http::request::Parts;
 use axum::http::Request;
+use axum::http::request::Parts;
 use axum::middleware::Next;
 use axum::response::Response;
 use lazy_regex::regex_captures;
@@ -60,7 +59,6 @@ pub async fn mw_ctx_resolver(
 }
 
 // region:    --- Ctx Extractor
-#[async_trait]
 impl<S: Send + Sync> FromRequestParts<S> for Ctx {
 	type Rejection = Error;
 

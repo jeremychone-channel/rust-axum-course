@@ -1,6 +1,6 @@
+use crate::Result;
 use crate::ctx::Ctx;
 use crate::model::{ModelController, Ticket, TicketForCreate};
-use crate::Result;
 use axum::extract::{Path, State};
 use axum::routing::{delete, post};
 use axum::{Json, Router};
@@ -8,7 +8,7 @@ use axum::{Json, Router};
 pub fn routes(mc: ModelController) -> Router {
 	Router::new()
 		.route("/tickets", post(create_ticket).get(list_tickets))
-		.route("/tickets/:id", delete(delete_ticket))
+		.route("/tickets/{id}", delete(delete_ticket))
 		.with_state(mc)
 }
 

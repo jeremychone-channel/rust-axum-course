@@ -1,5 +1,7 @@
 # Rust Axum Full Course Source Code
 
+**Latest Update: 2025-09-21 - Update to Axum 0.8**
+
 [GitHub Repo - jeremychone-channel/rust-axum-course](https://github.com/jeremychone-channel/rust-axum-course/)
 
 This repository contains the source code for the Rust Axum Full Course, which is available on [YouTube](https://youtube.com/watch?v=XZtlD_m59sM&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q).  
@@ -12,7 +14,10 @@ Important: Refresh this repo. I implemented a fix to `cookie.add` for `AUTH_TOKE
 
 Here is a [Per Chapter Fork](https://github.com/FloWi/rust-axum-course) by [@FloWi](https://github.com/FloWi). Big thanks!
 
-CODE UPDATED TO AXUM 0.7 [tag: axum-06-to-07](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-06-to-07)
+## Updates
+
+- 2025-09-21 -  **Axum 0.7 to 0.8** [GitHub tag: axum-07-to-08](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-07-to-08)
+- 2023-09-30 -  **Axum 0.6 to 0.7** [GitHub tag: axum-06-to-07](https://github.com/jeremychone-channel/rust-axum-course/releases/tag/axum-06-to-07)
 
 ## Dev (REPL)
 

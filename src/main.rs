@@ -4,9 +4,10 @@ use crate::ctx::Ctx;
 use crate::log::log_request;
 use crate::model::ModelController;
 use axum::extract::{Path, Query};
-use axum::http::{Method, Uri};
+use axum::handler::HandlerWithoutStateExt as _;
+use axum::http::{Method, StatusCode, Uri};
 use axum::response::{Html, IntoResponse, Response};
-use axum::routing::{get, get_service};
+use axum::routing::{MethodRouter, get, get_service};
 use axum::{Json, Router, middleware};
 use serde::Deserialize;
 use serde_json::json;
@@ -39,7 +40,7 @@ async fn main() -> Result<()> {
 			web::mw_auth::mw_ctx_resolver,
 		))
 		.layer(CookieManagerLayer::new())
-		.fallback_service(routes_static());
+		.fallback_service(route_static());
 
 	// region:    --- Start Server
 	let listener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
@@ -53,12 +54,16 @@ async fn main() -> Result<()> {
 }
 
 async fn main_response_mapper(
-	ctx: Option<Ctx>,
+	ctx: Result<Ctx>, // from axum 0.8, do not support Option<Ctx> anymore.
 	uri: Uri,
 	req_method: Method,
 	res: Response,
 ) -> Response {
 	println!("->> {:<12} - main_response_mapper", "RES_MAPPER");
+
+	// Here we accept that the CTX is error
+	let ctx = ctx.ok();
+
 	let uuid = Uuid::new_v4();
 
 	// -- Get the eventual response error.
@@ -93,15 +98,19 @@ async fn main_response_mapper(
 	error_response.unwrap_or(res)
 }
 
-fn routes_static() -> Router {
-	Router::new().nest_service("/", get_service(ServeDir::new("./")))
+fn route_static() -> MethodRouter {
+	async fn handle_404() -> (StatusCode, &'static str) {
+		(StatusCode::NOT_FOUND, "Resource not found.")
+	}
+
+	get_service(ServeDir::new("/").not_found_service(handle_404.into_service()))
 }
 
 // region:    --- Routes Hello
 fn routes_hello() -> Router {
 	Router::new()
 		.route("/hello", get(handler_hello))
-		.route("/hello2/:name", get(handler_hello2))
+		.route("/hello2/{name}", get(handler_hello2))
 }
 
 #[derive(Debug, Deserialize)]
