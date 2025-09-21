@@ -1,19 +1,16 @@
 [package]
 name = "rust-axum-intro"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 authors = ["Jeremy Chone <jeremy.chone@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "Rust Axum Full Course code."
 homepage = "https://youtu.be/XZtlD_m59sM"
-repository = "https://github.com/rust-httpc-test"
+repository = "https://github.com/jeremychone-channel/rust-axum-course"
 
-[workspace.lints.rust]
+[lints.rust]
 unsafe_code = "forbid"
-unused = "allow" # For experimental dev.
-
-[lints]
-workspace = true
+# unused = { level = "allow", priority = -1 } # For exploratory dev.
 
 [dependencies]
 # -- Async
